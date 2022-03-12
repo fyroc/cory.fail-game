@@ -1,6 +1,8 @@
 import Phaser from "phaser";
-import background from "../assets/background.png";
-import Background from "../sprites/background";
+import Background from "../sprites/Background";
+import Player from "../sprites/Player";
+import backgroundImage from "../assets/background.png";
+import playerImage from "../assets/player.png";
 
 export default class Main extends Phaser.Scene {
     constructor() {
@@ -8,16 +10,23 @@ export default class Main extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image("background", background);
+        this.load.image("background", backgroundImage);
+        this.load.image("player-ship", playerImage);
     }
 
     create() {
-        this.background = new Background(
+        const background = new Background(
             this,
             this.cameras.main.width / 2,
             this.cameras.main.height / 2
         );
+
+        this.cursors = this.input.keyboard.createCursorKeys();
+
+        this.player = new Player(this, 100, 450);
     }
 
-    update() {}
+    update() {
+        this.player.update();
+    }
 }
