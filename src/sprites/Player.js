@@ -9,9 +9,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.scene = scene;
         this.texture = texture;
 
-        scene.physics.add.existing(this);
-        scene.sys.displayList.add(this);
-        scene.sys.updateList.add(this);
+        this.scene.physics.add.existing(this);
+        this.scene.sys.displayList.add(this);
+        this.scene.sys.updateList.add(this);
 
         this.animations();
 
@@ -38,9 +38,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             this.body.setVelocityY(0);
         }
 
-        var cursorKeys = this.scene.input.keyboard.createCursorKeys();
-
-        if (cursorKeys.space.isDown) {
+        if (this.scene.cursors.space.isDown) {
             this.fireBullet();
         }
     }

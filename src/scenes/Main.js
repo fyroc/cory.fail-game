@@ -37,5 +37,6 @@ export default class Main extends Phaser.Scene {
 
     update() {
         this.player.update();
+        this.laserGroup.update();
     }
 }
