@@ -2,7 +2,7 @@ import Phaser from "phaser";
 import Background from "../sprites/Background";
 import Player from "../sprites/Player";
 import backgroundImage from "../assets/background.png";
-import playerImage from "../assets/player.png";
+import playerSprite from "../assets/player.png";
 
 export default class Main extends Phaser.Scene {
     constructor() {
@@ -11,7 +11,10 @@ export default class Main extends Phaser.Scene {
 
     preload() {
         this.load.image("background", backgroundImage);
-        this.load.image("player-ship", playerImage);
+        this.load.spritesheet("player-sprite", playerSprite, {
+            frameWidth: 64,
+            frameHeight: 64,
+        });
     }
 
     create() {
