@@ -1,7 +1,9 @@
 import Phaser from "phaser";
 import Background from "../sprites/Background";
 import Player from "../sprites/Player";
+import LaserGroup from "../groups/LaserGroup";
 import backgroundImage from "../assets/background.png";
+import bulletImage from "../assets/bullet.png";
 import playerSprite from "../assets/player.png";
 
 export default class Main extends Phaser.Scene {
@@ -11,6 +13,8 @@ export default class Main extends Phaser.Scene {
 
     preload() {
         this.load.image("background", backgroundImage);
+        this.load.image("laser", bulletImage);
+
         this.load.spritesheet("player-sprite", playerSprite, {
             frameWidth: 64,
             frameHeight: 64,
@@ -25,6 +29,8 @@ export default class Main extends Phaser.Scene {
         );
 
         this.cursors = this.input.keyboard.createCursorKeys();
+
+        this.laserGroup = new LaserGroup(this);
 
         this.player = new Player(this, 100, 450);
     }

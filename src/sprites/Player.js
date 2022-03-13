@@ -37,6 +37,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         } else {
             this.body.setVelocityY(0);
         }
+
+        var cursorKeys = this.scene.input.keyboard.createCursorKeys();
+
+        if (cursorKeys.space.isDown) {
+            this.fireBullet();
+        }
     }
 
     animations() {
@@ -63,5 +69,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             frameRate: 10,
             repeat: 0,
         });
+    }
+
+    fireBullet() {
+        this.scene.laserGroup.fireBullet(this.body.x + 30, this.body.y - 20);
     }
 }
