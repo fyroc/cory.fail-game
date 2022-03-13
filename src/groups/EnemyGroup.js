@@ -17,7 +17,7 @@ export default class EnemyGroup extends Phaser.Physics.Arcade.Group {
     }
 
     spawn() {
-        for (var y = 0; y < 2; y++) {
+        for (var y = -10; y < -8; y++) {
             for (var x = 0; x < 10; x++) {
                 let enemy = this.create(100 + x * 48, y * 50, "enemy1_red");
                 enemy.name = "enemy1_red" + x.toString() + y.toString();
@@ -33,6 +33,10 @@ export default class EnemyGroup extends Phaser.Physics.Arcade.Group {
             if (enemies[enemy].y > 800) {
                 this.enemyOut(enemies[enemy]);
             }
+        }
+
+        if (this.countActive() === 0) {
+            this.spawn();
         }
     }
 
